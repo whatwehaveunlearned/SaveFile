@@ -7,7 +7,8 @@
     <string name="stop">STOP</string>
     <string name="tts">TTS</string>
     <string name="asr">ASR</string>
-    
+   	<string name="save">SAVE</string>
+    <string name="load">LOAD</string>
     <string name="footer">Beginning Google Glass Development: Chapter 2</string>
     
 </resources>    

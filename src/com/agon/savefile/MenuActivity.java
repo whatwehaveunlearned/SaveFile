@@ -1,9 +1,15 @@
 package com.agon.savefile;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.util.HashMap;
 import java.util.Locale;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
@@ -20,6 +26,9 @@ public class MenuActivity extends Activity implements OnInitListener {
 	private TextToSpeech tts;
 	private boolean mAttachedToWindow;
 	private boolean mTTSSelected;
+	
+	String filename = "sensorData"; 
+	FileOutputStream outputStream;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +101,45 @@ public class MenuActivity extends Activity implements OnInitListener {
 			Intent i = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
 			startActivityForResult(i, 0);  
 			return true;
+		
+		case R.id.save:
+			try {
+		          outputStream = openFileOutput(filename, Context.MODE_APPEND);
+		          OutputStreamWriter outputStreamWriter = new OutputStreamWriter (outputStream);
+		          outputStreamWriter.write(filename);
+		          outputStreamWriter.close();
+		        } 
+		       catch (Exception e) {
+		          e.printStackTrace();
+		        }
+			return true;
+			
+		case R.id.load:
+
+		   //Printing the file in logcat just to verify the contents 
+
+		      FileInputStream inputStream;
+
+		      try
+		        {
+		            inputStream = openFileInput(filename);
+
+		            InputStreamReader inputStreamReader = new InputStreamReader (inputStream);
+
+		            char[] buffer = new char[filename.length()];
+
+		            inputStreamReader.read(buffer);
+
+		            String input = buffer.toString();
+
+		            Log.i("Salida",input);
+
+		        }
+		        catch (Exception e)
+		        {
+		            e.printStackTrace();
+		        }
+		    return true;
 
 		default:
 			return super.onOptionsItemSelected(item);

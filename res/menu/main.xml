@@ -14,5 +14,13 @@
     <item
         android:id="@+id/asr"
         android:title="@string/asr"
-        android:icon="@drawable/ic_asr" />   
+        android:icon="@drawable/ic_asr" />
+    <item
+        android:id="@+id/save"
+        android:title="@string/save"
+        android:icon="@drawable/ic_asr" />  
+   <item
+        android:id="@+id/load"
+        android:title="@string/load"
+        android:icon="@drawable/ic_asr" />
 </menu>
